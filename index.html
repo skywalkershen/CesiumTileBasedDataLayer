@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.65/Build/Cesium/Cesium.js"></script>
+  <script src="./tileDataProvider.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.65/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+</head>
+<body>
+  <div id="cesiumContainer" style="width: 100%; height:100%"></div>
+  <script>
+    var viewer = new Cesium.Viewer('cesiumContainer', {
+        terrainProvider: Cesium.createWorldTerrain()
+    });
+    var mapLonlat = new TileLonlatsImageryProvider({});
+    var imageryLayers = viewer.imageryLayers;
+    var mapLonlatLayer = imageryLayers.addImageryProvider(mapLonlat);//添加注记图层
+    imageryLayers.raiseToTop(mapLonlatLayer);//将注记图层置顶
+
+  </script>
+</body>
+</html>
