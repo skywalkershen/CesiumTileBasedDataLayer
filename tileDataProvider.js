@@ -244,30 +244,28 @@ TileLonlatsImageryProvider.prototype.requestImage = function (x, y, level, reque
     var lon = (x + 0.5) * interval-180;
     var lat = 90 - (y + 0.5) * interval;
     //var label = 'L-' + level + 'X-' + x + 'Y-' + y;
-    var labelLevel = '';
+    var labelCoord = `x: ${x}; y: ${y}; level: ${level}`;
     var labelLon = '';
     var labelLat = '';
     if (lon > 0) {
         if (lat > 0) {
             //label = 'L' + level + 'E' + lon + 'N' + lat;
-            labelLevel = 'L' + level;
             labelLon = 'E' + lon;
             labelLat = 'N' + lat;
         } else {
             //label = 'L' + level + 'E' + lon + 'S' + (-lat);
-            labelLevel = 'L' + level;
             labelLon = 'E' + lon;
             labelLat = 'N' + (-lat);
         }
     } else {
         if (lat > 0) {
             //label = 'L' + level + 'W' + (-lon) + 'N' + lat;
-            labelLevel = 'L' + level;
+
             labelLon = 'E' + (-lon);
             labelLat = 'N' + lat;
         } else {
             //label = 'L' + level + 'W' + (-lon) + 'S' + (-lat);
-            labelLevel = 'L' + level;
+
             labelLon = 'E' + (-lon);
             labelLat = 'N' + (-lat);
         }
@@ -276,15 +274,19 @@ TileLonlatsImageryProvider.prototype.requestImage = function (x, y, level, reque
     context.fillStyle = cssColor;
     if (level > 10) {
         context.font = 'bold 16px Arial';
-        context.fillText(labelLevel, 124, 100);
+        context.fillText(labelCoord, 124, 100);
         context.fillText(labelLon, 124, 124);
         context.fillText(labelLat, 124, 148);
     } else {
         context.font = 'bold 25px Arial';
-        context.fillText(labelLevel, 124, 94);
+        context.fillText(labelCoord, 124, 94);
         context.fillText(labelLon, 124, 124);
         context.fillText(labelLat, 124, 154);
     }  
+    var randomData1 = `random data1: ${Math.random().toFixed(2) * 100}`;
+    var randomData2 = `random data1: ${Math.random().toFixed(2) * 1000}`;
+    context.fillText(randomData1, 124, 184);
+    context.fillText(randomData2, 124, 214);
     //context.textAlign = 'center';
     //context.fillStyle = 'black';//绘制阴影效果
     //context.fillText(label, 127, 127);
